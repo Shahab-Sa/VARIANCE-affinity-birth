@@ -1,8 +1,8 @@
 # Python script for analyses of "Antibody affinity birth through somatic hypermutation" publication.
-# This pipeline is devided to 8 sections. At the beginning of each section there is a comment which indicates which figures of the publication are generated based on that section.
+# This pipeline is divided into 8 sections. At the beginning of each section there is a comment which indicates which figures of the publication are generated based on that section.
 
 
-# input sequences for these analyses are uploaded in data folder. The result of each section will be saved in output folder.
+# input sequences for these analyses are uploaded in data folder. By a successful run, the result of each section will be saved in output folder.
 print('Running...')
 data_folder='../data'
 
