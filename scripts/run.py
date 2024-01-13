@@ -1,5 +1,5 @@
 # Python script for analyses of "Antibody affinity birth through somatic hypermutation" publication.
-# This pipeline is divided to 8 sections. At the beginning of each section there is a comment which indicates which figures of the publication are generated based on that section.
+# This pipeline is devided to 8 sections. At the beginning of each section there is a comment which indicates which figures of the publication are generated based on that section.
 
 
 # input sequences for these analyses are uploaded in data folder. The result of each section will be saved in output folder.
@@ -114,6 +114,7 @@ def import_fasta(files_List):
             df.loc[i, 'seq_aa']=''.join(translation[0])
             df.loc[i, 'frameshift']=translation[1]
             df.loc[i, 'stopcodon']=translation[2]
+            df.loc[i, 'len_nt']=len(df.loc[i, 'seq_nt'])
             df.loc[i, 'len_aa']=len(translation[0])
 
         df['header'] = df['header'].apply(lambda x: x.lstrip('>'))
@@ -146,7 +147,8 @@ def ins_dels_miss(df):
                 else: df.loc[i, 'aa_miss']+=1
     return(df)
 
-def expand_aa(df):
+def expand_aa(df_initial):
+    df=df_initial.copy()
     df_aa_empty=pd.DataFrame(columns=['A{}'.format(i) for i in range(0,int(df['len_aa'].max()))], index=df.index)
     df=pd.concat([df, df_aa_empty], axis=1)
 
@@ -155,6 +157,18 @@ def expand_aa(df):
         ref=df.loc[i, 'ref_aa']
         for p in range(0, len(ref)):
             df.loc[i, 'A{}'.format(p)]=query[p]
+    return(df)
+
+def expand_nt(df_initial):
+    df=df_initial.copy()
+    df_aa_empty=pd.DataFrame(columns=['NT{}'.format(i) for i in range(0,int(df['len_nt'].max()))], index=df.index)
+    df=pd.concat([df, df_aa_empty], axis=1)
+
+    for i in df.index:
+        query=df.loc[i, 'seq_nt']
+        ref=df.loc[i, 'ref_nt']
+        for p in range(0, len(ref)):
+            df.loc[i, 'NT{}'.format(p)]=query[p]
     return(df)
 
 def df_clean_up(df, zero_miss='exclude'): # By default, excludes sequences without nt mismatches. (mutations=insertions+deletions+mismatches)
@@ -311,6 +325,37 @@ dfs=ins_dels_miss(dfs)
 dfs
 
 dfs.to_csv('{}/dfs_all.tsv'.format(output_folder_prep), sep = '\t', index=False)
+
+dfs
+
+dfs_expanded_nts=expand_nt(dfs)
+dfs_expanded_nts.to_csv('{}/dfs_expanded_nts.tsv'.format(output_folder_prep), sep = '\t', index=False)
+
+dfs_expanded_nts
+
+dfs_expanded_nts_cleaned=df_clean_up(dfs_expanded_nts)
+dfs_expanded_nts_cleaned.reset_index(inplace=True, drop=True)
+dfs_expanded_nts_cleaned.to_csv('{}/dfs_expanded_nts_cleaned.tsv'.format(output_folder_prep), sep = '\t', index=False)
+dfs_expanded_nts_cleaned
+
+df_nts_mismatch=dfs_expanded_nts_cleaned.copy()
+df_frq_nts_mismatch=pd.DataFrame()
+
+grouping=df_nts_mismatch.groupby(by=['mice', 'dataset', 'chain'])
+
+for grouped, df in grouping:
+    suffix='_'.join(grouped)
+    df.reset_index(drop=True, inplace=True)
+    num_seqs=len(df)
+    ref_nt=df.loc[0, 'ref_nt']
+    for p in range(0, len(ref_nt)):
+
+        mismatches_list = ['A', 'T', 'C', 'G']
+        mismatches_list.remove(ref_nt[p])
+        instances = len(df[df['NT{}'.format(p)].apply(lambda x: True if x in mismatches_list else False)])
+        df_frq_nts_mismatch.loc[p, suffix] = instances / num_seqs
+
+df_frq_nts_mismatch.to_csv('{}/frq_nts_mismatches.tsv'.format(output_folder_prep), sep = '\t', index=False)
 
 dfs_expanded_aas=expand_aa(dfs)
 dfs_expanded_aas.to_csv('{}/dfs_expanded_aas.tsv'.format(output_folder_prep), sep = '\t', index=False)
