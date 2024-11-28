@@ -1,6 +1,6 @@
 # Antibody Affinity Birth Through Somatic Hypermutation
 
-This repository supports the publication **"Antibody affinity birth through somatic hypermutation"**[1]. It contains raw FASTA files, Python scripts, intermediate results, and results used in the analysis described in the paper. The **“raw_fasta_files”** folder contains all raw FASTA sequences analyzed in this project, except for the passenger dataset published by Yeap, Leng-Siew et al. (2015)[2]. The **“analyses”** folder contains Python scripts, intermediate results, and results.
+This repository supports the publication **"Antibody affinity birth through somatic hypermutation"**<sup>1</sup>. It contains raw FASTA files, Python scripts, intermediate results, and results used in the analysis described in the paper. The **“raw_fasta_files”** folder contains all raw FASTA sequences analyzed in this project, except for the passenger dataset published by Yeap, Leng-Siew et al. (2015)<sup>2</sup>. The **“analyses”** folder contains Python scripts, intermediate results, and results.
 
 Before running any script, ensure that the data files from the previous stage are decompressed to allow the script to locate its input files.
 
@@ -8,7 +8,7 @@ Before running any script, ensure that the data files from the previous stage ar
 
 ### Stage A: Data Preparation
 
-Each 10X Genomics VDJ (BCR) library is accompanied by CSP (cell surface protein) data. By experimental design, each library contains samples from three organs—spleen (SPL), mesenteric lymph nodes (MLN), and Peyer’s patches (PPs)—multiplexed using Hashtag Oligos (HTOs)[3]. HTO barcodes are used to demultiplex the FASTA files for these organs using the **htoDemux** function from the Seurat R package[4], as summarized in the table below:
+Each 10X Genomics VDJ (BCR) library is accompanied by CSP (cell surface protein) data. By experimental design, each library contains samples from three organs—spleen (SPL), mesenteric lymph nodes (MLN), and Peyer’s patches (PPs)—multiplexed using Hashtag Oligos (HTOs)<sup>3</sup>. HTO barcodes are used to demultiplex the FASTA files for these organs using the **htoDemux** function from the Seurat R package<sup>4</sup>, as summarized in the table below:
 
 |     CSP     |     BCR     |   Mouse   |  SPL  |  MLN  |  PPs   |
 |:-----------:|:-----------:|:---------:|:-----:|:-----:|:-----:|
@@ -17,9 +17,9 @@ Each 10X Genomics VDJ (BCR) library is accompanied by CSP (cell surface protein)
 | WL-52-CSP   | WL-53-BCR   | B18-383   | HTO1  | HTO2  | HTO3  |
 | WL-54-CSP   | WL-55-BCR   | HA-uMT    | HTO4  | HTO5  | HTO6  |
 
-The passenger dataset, published by Yeap, Leng-Siew et al. (2015)[2], is downloaded from **NCBI BioSample SAMN04014807**, and the R1 and R2 reads are merged to create a single dataset. This merged passenger dataset is added to the 10X and Sanger sequencing datasets for further analysis.
+The passenger dataset, published by Yeap, Leng-Siew et al. (2015)<sup>2</sup>, is downloaded from **NCBI BioSample SAMN04014807**, and the R1 and R2 reads are merged to create a single dataset. This merged passenger dataset is added to the 10X and Sanger sequencing datasets for further analysis.
 
-All datasets are annotated using a local version of IgBLAST, **run through the Immcantation pipeline**[5]. The annotated results are stored in the **Stage A data folder**.
+All datasets are annotated using a local version of IgBLAST, **run through the Immcantation pipeline**<sup>5</sup>. The annotated results are stored in the **Stage A data folder**.
 
 ### Stage B: Quality Filtering
 
@@ -40,7 +40,7 @@ Further quality filtering steps are applied to refine the results from Stage C. 
 - **Script E2:** Tables summarizing the number of nucleotide and amino acid mutations per sequence are created.
 - **Script E3:** Frequencies of nucleotide and amino acid mutations at each position in different datasets are calculated and stored in tables.
 - **Script E4:** Tables for donut plots visualizing the proportions of unmutated and mutated sequences in the datasets are generated.
-- **Script E5:** Sequence logos are prepared and visualized using Logomaker[6].
+- **Script E5:** Sequence logos are prepared and visualized using Logomaker<sup>6</sup>.
 - **Scripts E6 and E7:** R/S (replacement-to-silent mutation) ratio tables are generated.
 - **Scripts E8 and E9:** Privacy index-related tables and figures are created and visualized to analyze the distribution of mutations across datasets.
 
