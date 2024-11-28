@@ -44,6 +44,23 @@ Further quality filtering steps are applied to refine the results from Stage C. 
 - **Scripts E6 and E7:** R/S (replacement-to-silent mutation) ratio tables are generated.
 - **Scripts E8 and E9:** Privacy index-related tables and figures are created and visualized to analyze the distribution of mutations across datasets.
 
+# Notes
+
+## Privacy Index Calculation Method
+
+Mutations shared across all four datasets being compared were first identified, and their frequency within each dataset was calculated. Next, the frequencies of each mutation across all datasets were summed. The fraction of a mutation’s frequency was then calculated by dividing its frequency in a single dataset by its total summed frequency across all datasets. These fractions were referred to as privacy indexes. Using this approach, four privacy indexes (one for each dataset) were assigned to each mutation. The sum of these privacy index values for a given mutation equals 1. For example, if a mutation is evenly distributed across all four datasets, its privacy index value would be 0.25 in each dataset.
+
+For example, in Figure 4D (left panel), the HA reference sequence mutation M73I occurs with the following frequencies: 32.8% in OVA, 35.7% in APC, 17.8% in CGG, and 8.3% in the “all 1:1 HA/WT” dataset. To calculate the privacy index, the frequencies for each dataset were summed: 32.8 + 35.7 + 17.8 + 8.3 = 94.6.
+
+Now, we calculate the privacy index for each dataset by dividing the frequency of the mutation by the total frequency:
+
+OVA: 32.8 / 94.6 = 0.347  
+APC: 35.7 / 94.6 = 0.377  
+CGG: 17.8 / 94.6 = 0.188  
+“all 1:1 HA/WT”: 8.3 / 94.6 = 0.088  
+
+The sum of these privacy index values is: 0.347 + 0.377 + 0.188 + 0.088 = 1.0
+
 ## References
 
 1. "Antibody affinity birth through somatic hypermutation."
