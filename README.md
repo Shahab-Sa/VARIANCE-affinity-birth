@@ -1,11 +1,11 @@
-# Antibody Affinity Birth Through Somatic Hypermutation
+# Somatic Hypermutation Unlocks Antibody Specificities Beyond the Primary Repertoire
 
-This repository supports the publication **"Antibody affinity birth through somatic hypermutation"**<sup>1</sup>. It contains raw FASTA files, Python scripts, intermediate results, and results used in the analysis described in the paper. The **“raw_fasta_files”** folder contains all raw FASTA sequences analyzed in this project, except for the passenger dataset published by Yeap, Leng-Siew et al. (2015)<sup>2</sup>. The **“analyses”** folder contains Python scripts, intermediate results, and results.
+This repository supports the publication **"Somatic Hypermutation Unlocks Antibody Specificities Beyond the Primary Repertoire"**<sup>1</sup>. It contains raw FASTA files, Python scripts, intermediate results, and results used in the analysis described in the paper. The **“raw_fasta_files”** folder contains all raw FASTA sequences analyzed in this project, except for the passenger dataset published by Yeap, Leng-Siew et al. (2015)<sup>2</sup>. The **“analyses”** folder contains Python scripts, intermediate results, and results.
 
 Before running any script, ensure that the data files from the previous stage are decompressed to allow the script to locate its input files.
 
 ## Analysis Workflow
-
+Somatic Hypermutation Unlocks Antibody Specificities Beyond the Primary Repertoire
 ### Stage A: Data Preparation
 
 Each 10X Genomics VDJ (BCR) library is accompanied by CSP (cell surface protein) data. By experimental design, each library contains samples from three organs—spleen (SPL), mesenteric lymph nodes (MLN), and Peyer’s patches (PPs)—multiplexed using Hashtag Oligos (HTOs)<sup>3</sup>. HTO barcodes are used to demultiplex the FASTA files for these organs using the **htoDemux** function from the Seurat R package<sup>4</sup>, as summarized in the table below:
@@ -63,7 +63,7 @@ The sum of these privacy index values is: 0.347 + 0.377 + 0.188 + 0.088 = 1.0
 
 ## References
 
-1. "Antibody affinity birth through somatic hypermutation."
+1. "Somatic Hypermutation Unlocks Antibody Specificities Beyond the Primary Repertoire."
 2. Yeap, L. S., et al. (2015). "Sequence-Intrinsic Mechanisms that Target AID Mutational Outcomes on Antibody Genes." *Cell*. DOI: [10.1016/j.cell.2015.10.042](https://doi.org/10.1016/j.cell.2015.10.042).
 3. Stoeckius, M., et al. (2018). "Cell Hashing with barcoded antibodies enables multiplexing and doublet detection for single cell genomics." *Genome Biology*. DOI: [10.1186/s13059-018-1603-1](https://doi.org/10.1186/s13059-018-1603-1).
 4. Hao, Y., Stuart, T., Kowalski, M. H., Choudhary, S., Hoffman, P., Hartman, A., Srivastava, A., Molla, G., Madad, S., Fernandez-Granda, C., & Satija, R. (2024). "Dictionary learning for integrative, multimodal and scalable single-cell analysis." *Nature Biotechnology*, 42(2), 293–304. DOI: [10.1038/s41587-023-01767-y](https://doi.org/10.1038/s41587-023-01767-y).
