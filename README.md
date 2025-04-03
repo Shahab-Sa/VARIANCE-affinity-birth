@@ -61,6 +61,19 @@ CGG: 17.8 / 94.6 = 0.188
 
 The sum of these privacy index values is: 0.347 + 0.377 + 0.188 + 0.088 = 1.0
 
+# Information table for E6 & E7 "Modes"
+
+| Mode |   Mouse   |  Dataset 1  |  Dataset 2  |  Dataset 3  |  Dataset 4  | Chain |
+|:----:|:---------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----:|
+|  1   | B18-383   | OVA         | APC         | CGG         | Passenger   |  VH  |
+|  2   | HA-WT     | OVA         | APC         | CGG         | Mix         |  VH  |
+|  3   | B18-383   | OVA-CTLA4   | OVA-Isotype |     -       |     -       |  VH  |
+|  4   | HA-uMT    | OVA-CTLA4   | OVA-Isotype |     -       |     -       |  VH  |
+|  5   | HA-WT     | CGG-CTLA4   | CGG-Isotype |     -       |     -       |  VH  |
+|  6   | B18-383   | OVA-CTLA4   | OVA-Isotype |     -       |     -       |  VL  |
+|  7   | HA-uMT    | OVA-CTLA4   | OVA-Isotype |     -       |     -       |  VL  |
+|  8   | HA-WT     | CGG-CTLA4   | CGG-Isotype |     -       |     -       |  VL  |
+
 ## References
 
 1. "Somatic Hypermutation Unlocks Antibody Specificities Beyond the Primary Repertoire."
